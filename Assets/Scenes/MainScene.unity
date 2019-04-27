@@ -276,8 +276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60548ce53cc98c4ca0e054b344d894f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistToPlayer: 7
+  minDistToPlayer: 2
+  maxDistToPlayer: 20
   rotationSpeed: 80
+  scrollSpeed: 200
 --- !u!1 &1325891270
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +384,7 @@ GameObject:
   - component: {fileID: 1759058651}
   - component: {fileID: 1759058654}
   - component: {fileID: 1759058650}
+  - component: {fileID: 1759058655}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -389,8 +392,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1759058650
-BoxCollider:
+--- !u!136 &1759058650
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -399,8 +402,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.65
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1759058651
 MeshRenderer:
@@ -477,3 +481,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1759058655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759058649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef32d7cdb4a81749b68df8dfed7fbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

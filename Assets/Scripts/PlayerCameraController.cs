@@ -12,6 +12,9 @@ public class PlayerCameraController
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
 		Assert.IsNotNull(player);
+
+		distToPlayer = (minDistToPlayer +
+			maxDistToPlayer) / 2.0f;
 	}
 
 	void Update()
@@ -26,14 +29,24 @@ public class PlayerCameraController
 				transform.eulerAngles.z);
 		}
 
+		distToPlayer -= Input.GetAxis("Mouse ScrollWheel") *
+			scrollSpeed * Time.deltaTime;
+
+		distToPlayer = Mathf.Max(minDistToPlayer, distToPlayer);
+		distToPlayer = Mathf.Min(maxDistToPlayer, distToPlayer);
+
 		transform.position = player.transform.position;
-		transform.position -= transform.forward * minDistToPlayer;
+		transform.position -= transform.forward * distToPlayer;
 	}
 	#endregion
 
 	#region members
 	[SerializeField] float minDistToPlayer = 4.0f;
+	[SerializeField] float maxDistToPlayer = 6.0f;
+	float distToPlayer;
+
 	[SerializeField] float rotationSpeed = 100.0f;
+	[SerializeField] float scrollSpeed = 50.0f;
 
 	GameObject player;
 	#endregion
