@@ -21,20 +21,30 @@ public class PlayerMovement
 
 		if (xMove != 0.0f || yMove != 0.0f)
 		{
+			// Calculate sprint speed multiplier.
+			var sprintMod = 1.0f;
+			if( Input.GetAxis( "Fire3" ) > 0.0f )
+			{
+				sprintMod = sprintSpeedModifier;
+			}
+
+			// Rotate same as the camera.
 			transform.rotation = Quaternion.Euler(0.0f,
 				cam.transform.eulerAngles.y,
 				0.0f);
 
+			// Move based on look direction.
 			transform.Translate(
-				xMove * moveSpeed * Time.deltaTime,
+				xMove * moveSpeed * sprintMod * Time.deltaTime,
 				0.0f,
-				yMove * moveSpeed * Time.deltaTime);
+				yMove * moveSpeed * sprintMod * Time.deltaTime);
 		}
 	}
 	#endregion
 
 	#region members
 	[SerializeField] float moveSpeed = 4.5f;
+	[SerializeField] float sprintSpeedModifier = 2.0f;
 
 	Camera cam;
 	#endregion
