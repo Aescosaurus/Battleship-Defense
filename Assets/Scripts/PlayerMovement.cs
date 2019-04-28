@@ -19,11 +19,12 @@ public class PlayerMovement
 		var xMove = Input.GetAxis("Horizontal");
 		var yMove = Input.GetAxis("Vertical");
 
-		if (xMove != 0.0f || yMove != 0.0f)
+		if ((xMove != 0.0f || yMove != 0.0f) &&
+			canMove)
 		{
 			// Calculate sprint speed multiplier.
 			var sprintMod = 1.0f;
-			if( Input.GetAxis( "Fire3" ) > 0.0f )
+			if (Input.GetAxis("Sprint") > 0.0f)
 			{
 				sprintMod = sprintSpeedModifier;
 			}
@@ -40,6 +41,11 @@ public class PlayerMovement
 				yMove * moveSpeed * sprintMod * Time.deltaTime);
 		}
 	}
+
+	public void ToggleEnabled( bool enabled )
+	{
+		canMove = enabled;
+	}
 	#endregion
 
 	#region members
@@ -47,5 +53,6 @@ public class PlayerMovement
 	[SerializeField] float sprintSpeedModifier = 2.0f;
 
 	Camera cam;
+	bool canMove = true;
 	#endregion
 }
