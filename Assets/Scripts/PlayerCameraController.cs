@@ -19,7 +19,9 @@ public class PlayerCameraController
 
 	void Update()
 	{
-		if (Input.GetAxis("Rotate Camera") > 0.0f)
+		Cursor.lockState = CursorLockMode.Locked;
+
+		// if (Input.GetAxis("Rotate Camera") > 0.0f)
 		{
 			transform.eulerAngles = new Vector3(
 				transform.eulerAngles.x - Input.GetAxis(
