@@ -19,12 +19,18 @@ public class PlayerBowShoot
 
 		cam = Camera.main;
 		Assert.IsNotNull(cam);
+
+		shotRefire = gameObject.AddComponent<Timer>();
+		shotRefire.Duration = refireTime;
 	}
 
 	void Update()
 	{
-		if (Input.GetAxis("Fire") > 0.0f)
+		if (Input.GetAxis("Fire") > 0.0f &&
+			shotRefire.IsDone)
 		{
+			shotRefire.Reset();
+
 			var bullet = Instantiate(bulletPrefab,
 				transform.position,
 				cam.transform.rotation);
@@ -40,5 +46,7 @@ public class PlayerBowShoot
 	GameObject bulletPrefab;
 	[SerializeField] float bulletVel = 2.0f;
 	Camera cam;
+	[SerializeField] float refireTime = 1.0f;
+	Timer shotRefire;
 	#endregion
 }
