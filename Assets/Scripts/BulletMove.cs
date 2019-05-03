@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBulletMove
+public class BulletMove
 	:
 	MonoBehaviour
 {
@@ -16,6 +16,11 @@ public class PlayerBulletMove
 	public void SetVel(float vel)
 	{
 		this.vel = vel;
+	}
+
+	void OnCollisionEnter( Collision coll )
+	{
+		Destroy(gameObject);
 	}
 	#endregion
 

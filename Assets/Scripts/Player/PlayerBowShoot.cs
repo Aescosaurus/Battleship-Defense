@@ -35,8 +35,10 @@ public class PlayerBowShoot
 				transform.position,
 				cam.transform.rotation);
 
-			bullet.GetComponent<PlayerBulletMove>()
+			bullet.GetComponent<BulletMove>()
 				.SetVel(bulletVel);
+			bullet.GetComponent<Damager>()
+				.SetDamage(damage);
 		}
 	}
 	#endregion
@@ -48,5 +50,6 @@ public class PlayerBowShoot
 	Camera cam;
 	[SerializeField] float refireTime = 1.0f;
 	Timer shotRefire;
+	[SerializeField] int damage;
 	#endregion
 }
