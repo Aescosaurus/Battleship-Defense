@@ -16,6 +16,9 @@ public class PlayerBowShoot
 		bulletPrefab = Resources.Load<GameObject>(
 			"Prefabs/Bullet");
 		Assert.IsNotNull(bulletPrefab);
+
+		cam = Camera.main;
+		Assert.IsNotNull(cam);
 	}
 
 	void Update()
@@ -23,7 +26,9 @@ public class PlayerBowShoot
 		if (Input.GetAxis("Fire") > 0.0f)
 		{
 			var bullet = Instantiate(bulletPrefab,
-				transform.position, transform.rotation);
+				transform.position,
+				cam.transform.rotation);
+
 			bullet.GetComponent<PlayerBulletMove>()
 				.SetVel(bulletVel);
 		}
@@ -34,5 +39,6 @@ public class PlayerBowShoot
 	Transform bulletSpawnLoc;
 	GameObject bulletPrefab;
 	[SerializeField] float bulletVel = 2.0f;
+	Camera cam;
 	#endregion
 }
