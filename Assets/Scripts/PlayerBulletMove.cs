@@ -9,11 +9,11 @@ public class PlayerBulletMove
 	#region methods
 	void Update()
 	{
-		transform.Translate(transform.forward *
-			vel * Time.deltaTime);
+		transform.position += transform.forward *
+			vel * Time.deltaTime;
 	}
 
-	public void SetVel( float vel )
+	public void SetVel(float vel)
 	{
 		this.vel = vel;
 	}
