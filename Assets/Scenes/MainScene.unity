@@ -357,6 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistToPlayer: 2
   maxDistToPlayer: 20
+  heightAbovePlayer: 2
   rotationSpeed: 80
   scrollSpeed: 200
 --- !u!1 &1098495685

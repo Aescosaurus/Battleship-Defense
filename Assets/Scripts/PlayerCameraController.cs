@@ -15,6 +15,8 @@ public class PlayerCameraController
 
 		distToPlayer = (minDistToPlayer +
 			maxDistToPlayer) / 2.0f;
+		playerPosAdd = new Vector3(0.0f, heightAbovePlayer,
+			0.0f);
 	}
 
 	void Update()
@@ -37,7 +39,8 @@ public class PlayerCameraController
 		distToPlayer = Mathf.Max(minDistToPlayer, distToPlayer);
 		distToPlayer = Mathf.Min(maxDistToPlayer, distToPlayer);
 
-		transform.position = player.transform.position;
+		transform.position = player.transform.position +
+			playerPosAdd;
 		transform.position -= transform.forward * distToPlayer;
 	}
 	#endregion
@@ -45,7 +48,9 @@ public class PlayerCameraController
 	#region members
 	[SerializeField] float minDistToPlayer = 4.0f;
 	[SerializeField] float maxDistToPlayer = 6.0f;
+	[SerializeField] float heightAbovePlayer = 1.0f;
 	float distToPlayer;
+	Vector3 playerPosAdd;
 
 	[SerializeField] float rotationSpeed = 100.0f;
 	[SerializeField] float scrollSpeed = 50.0f;
